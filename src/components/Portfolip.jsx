@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/portfolio.css";
 import PieChartPortfolio from "../Graphs/PieChartPortfolio";
 import Chart from "chart.js/auto";
@@ -8,9 +8,9 @@ Chart.register(CategoryScale);
 
 function Portfolip() {
   const Data = [
-    { name: "BitCoin", value: 946 },
-    { name: "Etherium", value: 45 },
-    { name: "Binance Coin", value: 9 },
+    { name: "BitCoin", value: 800 },
+    { name: "Etherium", value: 150 },
+    { name: "Binance Coin", value: 50 },
   ];
   const [data, setData] = useState({
     labels: Data.map((coins) => coins.name),
