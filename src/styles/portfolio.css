@@ -1,6 +1,7 @@
 .portfolio {
   background-color: white;
   border-radius: 1.6rem;
+  /* border: 1px solid; */
 }
 .portfolio > h2 {
   font-family: var(--lobster);

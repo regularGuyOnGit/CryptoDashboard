@@ -5,6 +5,7 @@ import Search from "./Search";
 import MarketCap from "./MarketCap";
 import Exchange from "./Exchange";
 import Portfolip from "./Portfolip";
+import MainGraph from "./MainGraph";
 
 function App() {
   const [pageCurrency, setPageCurrency] = useState("usd");
@@ -22,6 +23,7 @@ function App() {
       <MarketCap currency={pageCurrency} />
       <Exchange />
       <Portfolip />
+      <MainGraph pageCurrency={pageCurrency} />
     </div>
   );
 }
