@@ -4,16 +4,16 @@ import { options } from "../../fetchOptions";
 
 function MarketCap({ currency }) {
   const [mktCap, setMktCap] = useState(null);
+
   useEffect(() => {
-    const mktCapFetch = async () => {
+    (async () => {
       const mktCapRawData = await fetch(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&category=layer-1&per_page=40`,
         options
       );
       const mktCapData = await mktCapRawData.json();
       setMktCap(mktCapData);
-    };
-    mktCapFetch();
+    })();
   }, [currency]);
   // console.log(mktCap);
   if (mktCap == null) {

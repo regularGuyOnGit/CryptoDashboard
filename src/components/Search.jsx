@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/searchBar.css";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { options } from "../../fetchOptions";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,30 +9,38 @@ import { faSearch } from "@fortawesome/fontawesome-free-solid";
 
 function Search() {
   const [userInput, setUserInput] = useState("");
-  const [data, setData] = useState(null);
+  const navigate = useNavigate();
+  // User currency Input.
   const input = (event) => {
     setUserInput(event.target.value);
   };
-  useEffect(() => {
-    const searchData = async () => {
+
+  // Function to fetch the results of the crypto-currency
+
+  async function fetchCurrencyDetails() {
+    try {
       const rawData = await fetch(
         `https://api.coingecko.com/api/v3/search?query=${userInput}`,
         options
       );
       const data = await rawData.json();
-      setData(data);
-    };
-    searchData();
-  }, [userInput]);
-  console.log(userInput);
-  console.log(data);
+      if (rawData.status == 200 && userInput !== "") {
+        console.log("worked redirect ");
+
+        navigate("coinDetails", {
+          state: {
+            data: data,
+          },
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <div className="searchBar">
-      <form
-        action=""
-        onChange={(e) => input(e)}
-        onClick={(e) => e.preventDefault()}
-      >
+      <form onChange={(e) => input(e)}>
         <input
           type="text"
           name="coinSearch"
@@ -40,11 +48,14 @@ function Search() {
           placeholder="Search Coins"
           value={userInput}
         />
-        <Link to={"coinDetails"} state={{ data }}>
-          <button disabled={userInput ? false : true}>
-            <FontAwesomeIcon icon={faSearch} />
-          </button>
-        </Link>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            fetchCurrencyDetails();
+          }}
+        >
+          <FontAwesomeIcon icon={faSearch} />
+        </button>
       </form>
     </div>
   );

@@ -2,8 +2,10 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 function CoinDetails() {
-  const location = useLocation();
-  const { data } = location.state;
+  // Consuming the data from incoming route
+  const { state } = useLocation();
+  const data = state.data;
+
   console.log(data);
   console.log(data.coins);
   if (data.coins.length == 0) {
