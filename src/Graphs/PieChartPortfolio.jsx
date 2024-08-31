@@ -3,8 +3,9 @@ import { Pie } from "react-chartjs-2";
 
 function PieChartPortfolio({ data }) {
   return (
-    <div className="portPie">
+    <div className="p-4 ">
       <Pie
+        className=""
         data={data}
         options={{
           elements: {},
@@ -12,11 +13,11 @@ function PieChartPortfolio({ data }) {
             legend: {
               position: "right",
               labels: {
-                padding: 16,
+                padding: 10,
                 pointStyle: "circle",
                 color: "rgb(12, 12, 12)",
                 font: {
-                  size: 12,
+                  size: 14,
                   weight: 600,
                   family: "Arial",
                 },
@@ -37,7 +38,10 @@ function PieChartPortfolio({ data }) {
         }}
       />
       <div>
-        <p style={{ paddingLeft: "2rem" }}> &#9670;Market Share</p>
+        <p style={{ paddingLeft: "2rem", color: "red" }}>
+          {" "}
+          &#9670;Market Share
+        </p>
       </div>
     </div>
   );

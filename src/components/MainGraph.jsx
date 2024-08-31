@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import LineGraph from "../Graphs/LineGraph";
-import "../styles/MainGraph.css";
 import { options } from "../../fetchOptions";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
@@ -318,12 +317,16 @@ function MainGraph({ pageCurrency }) {
   }
 
   return (
-    <div className="mainGraph">
-      <div className="btnAndDropdowns">
+    <div>
+      <div className="mb-2">
         {" "}
-        <div className="dayBtns">
+        <div className=" d-flex justify-content-center justify-content-md-around">
           <button
-            className={`${oneDay}`}
+            className={
+              oneDay == "active"
+                ? "btn btn-success m-1"
+                : "btn btn-outline-success m-1"
+            }
             onClick={() => {
               buttonHandlers(unixYesterDay, "1DAY");
               addClassOne();
@@ -332,7 +335,11 @@ function MainGraph({ pageCurrency }) {
             1D
           </button>
           <button
-            className={`${oneWeekT}`}
+            className={
+              oneWeekT == "active"
+                ? "btn btn-success m-1"
+                : "btn btn-outline-success m-1"
+            }
             onClick={() => {
               buttonHandlers(unixOneWeek, "1WEEK");
               addClassTwo();
@@ -341,7 +348,11 @@ function MainGraph({ pageCurrency }) {
             1W
           </button>
           <button
-            className={`${oneMonthT}`}
+            className={
+              oneMonthT == "active"
+                ? "btn btn-success m-1"
+                : "btn btn-outline-success m-1"
+            }
             onClick={() => {
               buttonHandlers(unixOneMonth, "1MONTH");
               addClassThree();
@@ -350,7 +361,11 @@ function MainGraph({ pageCurrency }) {
             1M{" "}
           </button>
           <button
-            className={`${sixMonth}`}
+            className={
+              sixMonth == "active "
+                ? "btn btn-success m-1"
+                : "btn btn-outline-success m-1"
+            }
             onClick={() => {
               buttonHandlers(unixSixMonths, "6MONTHS");
               addClassfour();
@@ -359,7 +374,11 @@ function MainGraph({ pageCurrency }) {
             6M
           </button>
           <button
-            className={`${oneYear}`}
+            className={
+              oneYear == "active"
+                ? "btn btn-success m-1"
+                : "btn btn-outline-success m-1"
+            }
             onClick={() => {
               buttonHandlers(unixYear, "1YEAR");
               addClassfive();
@@ -368,11 +387,12 @@ function MainGraph({ pageCurrency }) {
             1Y
           </button>
         </div>
-        <div className="graphTypeAndCrypto">
+        <div className=" d-flex justify-content-center justify-content-md-around">
           <select
             onChange={(e) => setCoin(e.target.value)}
             name="coin"
             id="coin"
+            className="w-50 m-1 form-select text-center"
           >
             <option value="bitcoin">Bitcoin</option>
             <option value="ethereum">Ethereum</option>
@@ -383,6 +403,7 @@ function MainGraph({ pageCurrency }) {
             name="graphType"
             id="graphType"
             onChange={(e) => setGraph(e.target.value)}
+            className="w-25 m-1 form-select text-center"
           >
             <option value="line">Line</option>
             <option value="bar">Bar</option>
