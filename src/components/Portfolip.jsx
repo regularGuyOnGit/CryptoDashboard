@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/portfolio.css";
+
 import PieChartPortfolio from "../Graphs/PieChartPortfolio";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
@@ -25,12 +25,12 @@ function Portfolip() {
   });
 
   if (!Data) {
-    return <div className="portfolio"></div>;
+    return <div className="portfolio border mb-2"></div>;
   }
   return (
-    <div className="portfolio">
-      <h2>Portfolio</h2>
-      <div className="pieChartPortfolio">
+    <div className="">
+      <h2 className="text-center heading-font">Portfolio</h2>
+      <div className=" h-75 d-flex justify-content-center">
         <PieChartPortfolio data={data} />
       </div>
     </div>

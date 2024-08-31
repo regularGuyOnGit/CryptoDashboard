@@ -1,26 +1,63 @@
-.dashBoardGrid {
-  background-color: rgb(238, 238, 238);
-  height: 90vh;
-  width: 96%;
-  margin: 5vh 2rem;
-  /* margin-right: 1rem; */
-  display: grid;
-  grid: 1fr 4fr 2fr/1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 0.7rem;
+.heading-font {
+  font-family: var(--lobster);
 }
-.searchBar {
-  grid-area: 1/2/2/5;
+.text-font {
+  font-family: var(--dancingScript);
 }
-.marketCap,
-.loaderMktCap {
-  grid-area: 1/5/4/7;
+
+/* Coin page css styling  */
+
+.coinPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.1rem;
+
+  color: grey;
 }
-.exchange {
-  grid-area: 3/3/4/5;
+.coinPage > h1 {
+  font-family: var(--protestGorella);
+  text-decoration: underline;
 }
-.portfolio {
-  grid-area: 3/1/4/3;
+.coinPage > img {
+  transition: transform 1s ease-in-out;
 }
-.mainGraph {
-  grid-area: 2/1/3/5;
+.coinPage > img:hover {
+  transform: rotateX(20deg);
+  transform: rotateX(-20deg);
+  cursor: pointer;
+}
+.coinPage > h3 {
+  font-family: var(--protestGorella);
+  font-size: 1.4rem;
+}
+.coinPage > a {
+  font-size: 1.3rem;
+  text-decoration: none;
+  border-radius: 1rem;
+  color: rgb(39, 107, 184);
+  font-family: var(--protestGorella);
+  padding: 0.3rem;
+}
+.coinPage > a:hover {
+  text-decoration: underline;
+}
+.errorSearch {
+  /* border: 1px solid; */
+  display: flex;
+  margin-top: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+  text-align: center;
+  gap: 1.3rem;
+  font-family: var(--overpass);
+}
+.errorSearch > a {
+  text-decoration: none;
+  color: rgb(39, 107, 184);
+  font-family: var(--teko);
+  font-size: 1.2rem;
+  text-decoration: underline;
 }

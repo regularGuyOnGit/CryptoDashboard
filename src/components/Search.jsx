@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/searchBar.css";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { options } from "../../fetchOptions";
@@ -39,9 +39,13 @@ function Search() {
   }
 
   return (
-    <div className="searchBar">
-      <form onChange={(e) => input(e)}>
+    <div className="m-2 ">
+      <form
+        onChange={(e) => input(e)}
+        className="w-100 d-flex justify-content-center"
+      >
         <input
+          className="w-75 form-control p-2"
           type="text"
           name="coinSearch"
           id="coinSearch"
@@ -53,6 +57,7 @@ function Search() {
             e.preventDefault();
             fetchCurrencyDetails();
           }}
+          className="btn btn-primary ms-1"
         >
           <FontAwesomeIcon icon={faSearch} />
         </button>

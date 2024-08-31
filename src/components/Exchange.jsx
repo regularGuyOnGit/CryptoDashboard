@@ -1,99 +1,110 @@
 import React, { useEffect, useState } from "react";
-import "../styles/exchange.css";
 
 function Exchange() {
   const [primary, setPrimary] = useState("btc");
-  const [secondary, setSecondary] = useState("eth");
+  const [secondary, setSecondary] = useState("aed");
   const [value, setValue] = useState(1);
   const [fetchedVal, setFetchedVal] = useState(null);
   const [displayVal, setDisplayVal] = useState(null);
 
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      "x-cg-demo-api-key": "CG-p4pbRGEt9G8v9ABzNd1puF1Y	",
-    },
-  };
-
   useEffect(() => {
-    const fetchCurrencyExchange = async () => {
+    (async () => {
       const rawData = await fetch(
         `https://api.coingecko.com/api/v3/exchange_rates`,
-        options
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "x-cg-demo-api-key": "CG-p4pbRGEt9G8v9ABzNd1puF1Y	",
+          },
+        }
       );
       const data = await rawData.json();
       setFetchedVal(data);
-    };
-    fetchCurrencyExchange();
+    })();
   }, []);
 
   const amountConversion = () => {
     if (fetchedVal) {
-      setDisplayVal(fetchedVal.rates[`${secondary}`].value * value);
+      setDisplayVal(
+        fetchedVal.rates[`${secondary}`].value * value + " " + secondary
+      );
     }
   };
   return (
-    <div className="exchange">
-      <h3>Exchange Coins</h3>
-      <div className="primary">
-        <span>
-          Sell :{" "}
-          <select
-            onChange={(e) => setPrimary(e.target.value)}
-            value={primary}
-            name="primaryCurrency"
-            id="primaryCurrency"
-          >
-            <option value="btn">Bitcoin</option>
-          </select>
-        </span>
-        <label htmlFor="currencyAmt">
+    <div className=" mb-2">
+      <h3 className="text-center heading-font">Exchange Coins</h3>
+      <div className=" d-flex justify-content-around mb-2">
+        <label className="m-2" htmlFor="primaryCurrency">
           {" "}
-          Enter Amt :{" "}
-          <input
-            type="number"
-            name="currencyAmt"
-            id="currencyAmt"
-            onChange={(e) => setValue(e.target.value)}
-            value={value}
-          />
+          Sell
         </label>
+        <select
+          className="form-select"
+          onChange={(e) => setPrimary(e.target.value)}
+          value={primary}
+          name="primaryCurrency"
+          id="primaryCurrency"
+        >
+          <option value="btn">Bitcoin</option>
+        </select>
       </div>
-      <div className="secondary">
-        <span>
-          <span>
-            {" "}
-            Buy :{" "}
-            <select
-              onChange={(e) => setSecondary(e.target.value)}
-              value={secondary}
-              name="secondaryCurrency"
-              id="secondaryCurrency"
-            >
-              <option value="aed">AED</option>
-              <option value="ars">Argentine Peso</option>
-              <option value="usd">USD</option>
-              <option value="inr">INR</option>
-              <option value="bits">Bits</option>
-              <option value="eur">EUR</option>
-              <option value="bnb">Binance Coin</option>
-              <option value="dot">Polkadot</option>
-              <option value="sats">Satoshi</option>
-              <option value="link">Chainlink</option>
-              <option value="xlm">Lumens</option>
-              <option value="xrp">XRP</option>
-            </select>
-          </span>
-        </span>
-        <div>
+      <div className="d-flex justify-content-around mb-2">
+        <label className="m-2" htmlFor="secondaryCurrency">
           {" "}
-          {displayVal} {"  "}
-        </div>
+          Buy{" "}
+        </label>
+
+        <select
+          className="form-select"
+          onChange={(e) => setSecondary(e.target.value)}
+          value={secondary}
+          name="secondaryCurrency"
+          id="secondaryCurrency"
+        >
+          <option selected value="aed">
+            AED
+          </option>
+          <option value="ars">Argentine Peso</option>
+          <option value="usd">USD</option>
+          <option value="inr">INR</option>
+          <option value="bits">Bits</option>
+          <option value="eur">EUR</option>
+          <option value="bnb">Binance Coin</option>
+          <option value="dot">Polkadot</option>
+          <option value="sats">Satoshi</option>
+          <option value="link">Chainlink</option>
+          <option value="xlm">Lumens</option>
+          <option value="xrp">XRP</option>
+        </select>
       </div>
-      <button onClick={amountConversion} className="exchangeBtn">
-        Exchange
-      </button>
+      <div className="d-flex justify-content-between mb-2">
+        <label className="m-2" htmlFor="currencyAmt">
+          Enter Amount
+        </label>
+        <input
+          type="number"
+          className="form-control w-50"
+          name="currencyAmt"
+          id="currencyAmt"
+          onChange={(e) => setValue(e.target.value)}
+          value={value}
+        />
+      </div>
+      <div
+        className="text-center "
+        style={{ fontFamily: "cursive", fontWeight: "bold" }}
+      >
+        {displayVal ? `Exhanged Amount is ${displayVal}` : ``}
+      </div>
+      <div className="d-flex justify-content-center">
+        <button
+          onClick={amountConversion}
+          className="btn btn-success mt-2 mb-2 rounded"
+        >
+          Exchange
+        </button>
+      </div>
     </div>
   );
 }
