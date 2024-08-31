@@ -13,7 +13,6 @@ function App() {
   const changePageCurrency = (currentCurrency) => {
     setPageCurrency(currentCurrency);
   };
-  console.log(window.innerHeight);
 
   return (
     <>
